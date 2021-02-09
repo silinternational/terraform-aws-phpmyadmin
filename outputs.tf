@@ -1,4 +1,4 @@
 output "phpmyadmin_url" {
-  value = cloudflare_record.pmadns.hostname
+  value = var.enable ? cloudflare_record.pmadns[0].hostname : ""
 }
 
