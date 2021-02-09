@@ -56,7 +56,7 @@ module "ecsservice" {
   service_name       = "pma-${var.app_name}"
   service_env        = var.app_env
   container_def_json = data.template_file.task_def.rendered
-  desired_count      = 1
+  desired_count      = var.enable ? 1 : 0
   tg_arn             = aws_alb_target_group.phpmyadmin.arn
   lb_container_name  = "phpMyAdmin"
   lb_container_port  = "80"
@@ -67,6 +67,7 @@ module "ecsservice" {
  * Create Cloudflare DNS record
 */
 resource "cloudflare_record" "pmadns" {
+  count   = var.enable ? 1 : 0
   zone_id = data.cloudflare_zones.domain.zones[0].id
   name    = var.subdomain
   value   = var.alb_dns_name

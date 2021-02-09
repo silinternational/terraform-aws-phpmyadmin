@@ -54,3 +54,7 @@ variable "memory" {
   default = "128"
 }
 
+variable "enable" {
+  type    = bool
+  default = true
+}
