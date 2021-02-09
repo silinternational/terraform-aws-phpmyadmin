@@ -91,11 +91,3 @@ module "rds" {
   multi_az                = false
   skip_final_snapshot     = true
 }
-
-variable "app_name" {
-  default = "phpmyadmin"
-}
-
-variable "app_env" {
-  default = "test"
-}
