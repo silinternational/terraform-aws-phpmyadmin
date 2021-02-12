@@ -30,7 +30,6 @@ provider "aws" {
 example configuration using email and global API key:
 
 ```hcl
-
 provider "cloudflare" {
   version    = "~> 2.0"
   email      = var.cloudflare_email
@@ -42,7 +41,6 @@ provider "cloudflare" {
 example configuration using an API token:
 
 ```hcl
-
 provider "cloudflare" {
   version    = "~> 2.0"
   api_token  = var.cloudflare_token
