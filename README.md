@@ -27,7 +27,7 @@ provider "aws" {
 
 [providers/cloudflare/cloudflare](https://registry.terraform.io/providers/cloudflare/cloudflare)
 
-example configuration:
+example configuration using email and global API key:
 
 ```hcl
 
@@ -35,6 +35,16 @@ provider "cloudflare" {
   version    = "~> 2.0"
   email      = var.cloudflare_email
   api_key    = var.cloudflare_api_key
+  account_id = var.cloudflare_account_id
+}
+```
+
+example configuration using an API token:
+
+```hcl
+
+provider "cloudflare" {
+  version    = "~> 2.0"
   api_token  = var.cloudflare_token
   account_id = var.cloudflare_account_id
 }
