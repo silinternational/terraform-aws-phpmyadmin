@@ -29,12 +29,12 @@ variable "alb_listener_priority" {
 
 variable "subdomain" {
   type        = string
-  description = "subdomain for the DNS record and listener, typically \"$${var.app_name}-pma\""
+  description = "subdomain for the DNS record and listener, typically app_name + \"pma\""
 }
 
 variable "cloudflare_domain" {
   type        = string
-  description = "domain name registered with Cloudflare. phpMyAdmin hostname will be \"$${var.subdomain}.$${var.cloudflare_domain}\""
+  description = "domain name registered with Cloudflare"
 }
 
 variable "rds_address" {
