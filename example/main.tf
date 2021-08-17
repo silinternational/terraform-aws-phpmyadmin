@@ -14,6 +14,9 @@ module "phpmyadmin" {
   ecs_cluster_id         = module.ecscluster.ecs_cluster_id
   ecsServiceRole_arn     = module.ecscluster.ecsServiceRole_arn
   alb_dns_name           = module.alb.dns_name
+  max_execution_time     = "1000"
+  memory_limit           = "768M"
+  upload_limit           = "4M"
 }
 
 /*
