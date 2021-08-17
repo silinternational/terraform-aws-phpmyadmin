@@ -72,3 +72,18 @@ variable "enable" {
   default     = true
   description = "Set to 'false' to destroy the DNS record and set the ECS service 'desired_count' to 0"
 }
+
+variable "max_execution_time" {
+  default     = "600"
+  description = "If set, will override the maximum execution time in seconds (default 600) for phpMyAdmin ($cfg['ExecTimeLimit']) and PHP max_execution_time (format as [0-9+])"
+}
+
+variable "memory_limit" {
+  default     = "512M"
+  description = "If set, will override the memory limit (default 512M) for phpMyAdmin ($cfg['MemoryLimit']) and PHP memory_limit (format as [0-9+](K,M,G))"
+}
+
+variable "upload_limit" {
+  default     = "2048K"
+  description = "If set, this option will override the default value for apache and php-fpm (format as [0-9+](K,M,G) default value is 2048K, this will change upload_max_filesize and post_max_size values)"
+}
