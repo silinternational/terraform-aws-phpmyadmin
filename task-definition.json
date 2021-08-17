@@ -28,6 +28,18 @@
       {
         "name": "PMA_ABSOLUTE_URI",
         "value": "https://${hostname}/"
+      },
+      {
+        "name": "MAX_EXECUTION_TIME",
+        "value": "${max_execution_time}"
+      },
+      {
+        "name": "MEMORY_LIMIT",
+        "value": "${memory_limit}"
+      },
+      {
+        "name": "UPLOAD_LIMIT",
+        "value": "${upload_limit}"
       }
     ],
     "links": [],

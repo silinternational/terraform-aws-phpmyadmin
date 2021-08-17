@@ -43,10 +43,13 @@ data "template_file" "task_def" {
   template = file("${path.module}/task-definition.json")
 
   vars = {
-    hostname   = "${var.subdomain}.${var.cloudflare_domain}"
-    mysql_host = var.rds_address
-    cpu        = var.cpu
-    memory     = var.memory
+    hostname           = "${var.subdomain}.${var.cloudflare_domain}"
+    mysql_host         = var.rds_address
+    cpu                = var.cpu
+    memory             = var.memory
+    max_execution_time = var.max_execution_time
+    memory_limit       = var.memory_limit
+    upload_limit       = var.upload_limit
   }
 }
 
