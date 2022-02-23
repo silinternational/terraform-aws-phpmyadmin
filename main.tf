@@ -71,8 +71,8 @@ data "cloudflare_zones" "domain" {
 
 locals {
   task_def = [{
-    cpu    = var.cpu
-    memory = var.memory
+    cpu    = tonumber(var.cpu)
+    memory = tonumber(var.memory)
     image  = "phpmyadmin/phpmyadmin:latest"
     name   = "phpMyAdmin"
     portMappings = [
