@@ -36,29 +36,12 @@ resource "aws_alb_listener_rule" "phpmyadmin" {
   }
 }
 
-/*
- * Create ECS service
- */
-data "template_file" "task_def" {
-  template = file("${path.module}/task-definition.json")
-
-  vars = {
-    hostname           = "${var.subdomain}.${var.cloudflare_domain}"
-    mysql_host         = var.rds_address
-    cpu                = var.cpu
-    memory             = var.memory
-    max_execution_time = var.max_execution_time
-    memory_limit       = var.memory_limit
-    upload_limit       = var.upload_limit
-  }
-}
-
 module "ecsservice" {
   source             = "github.com/silinternational/terraform-modules//aws/ecs/service-only?ref=3.3.2"
   cluster_id         = var.ecs_cluster_id
   service_name       = "pma-${var.app_name}"
   service_env        = var.app_env
-  container_def_json = data.template_file.task_def.rendered
+  container_def_json = jsonencode(local.task_def)
   desired_count      = var.enable ? 1 : 0
   tg_arn             = aws_alb_target_group.phpmyadmin.arn
   lb_container_name  = "phpMyAdmin"
@@ -84,4 +67,40 @@ data "cloudflare_zones" "domain" {
     lookup_type = "exact"
     status      = "active"
   }
+}
+
+locals {
+  task_def = [{
+    cpu    = var.cpu
+    memory = var.memory
+    image  = "phpmyadmin/phpmyadmin:latest"
+    name   = "phpMyAdmin"
+    portMappings = [
+      {
+        containerPort = 80
+      },
+    ],
+    environment = [
+      {
+        name  = "PMA_HOST"
+        value = var.rds_address
+      },
+      {
+        name  = "PMA_ABSOLUTE_URI"
+        value = "https://${var.subdomain}.${var.cloudflare_domain}/"
+      },
+      {
+        name  = "MAX_EXECUTION_TIME"
+        value = var.max_execution_time
+      },
+      {
+        name  = "MEMORY_LIMIT"
+        value = var.memory_limit
+      },
+      {
+        name  = "UPLOAD_LIMIT"
+        value = var.upload_limit
+      },
+    ]
+  }]
 }
