@@ -23,7 +23,7 @@ variable "alb_https_listener_arn" {
 }
 
 variable "alb_listener_priority" {
-  default     = "30"
+  default     = null
   description = "load balancer listener priority"
 }
 
