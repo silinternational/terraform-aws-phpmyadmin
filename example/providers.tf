@@ -3,5 +3,4 @@ provider "aws" {
 }
 
 provider "cloudflare" {
-  api_token = "____put_your_cloudflare_token_here______"
 }
