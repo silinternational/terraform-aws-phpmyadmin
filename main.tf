@@ -37,7 +37,7 @@ resource "aws_alb_listener_rule" "phpmyadmin" {
 }
 
 module "ecsservice" {
-  source             = "github.com/silinternational/terraform-modules//aws/ecs/service-only?ref=3.3.2"
+  source             = "github.com/silinternational/terraform-modules//aws/ecs/service-only?ref=8.13.0"
   cluster_id         = var.ecs_cluster_id
   service_name       = "pma-${var.app_name}"
   service_env        = var.app_env
