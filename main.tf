@@ -98,6 +98,14 @@ locals {
         value = var.memory_limit
       },
       {
+        name  = "PMA_SSL"
+        value = var.pma_ssl
+      },
+      {
+        name  = "PMA_SSL_CA_BASE64"
+        value = var.pma_ssl_ca_base64
+      },
+      {
         name  = "UPLOAD_LIMIT"
         value = var.upload_limit
       },
