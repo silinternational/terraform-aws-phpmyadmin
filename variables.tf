@@ -83,6 +83,16 @@ variable "memory_limit" {
   description = "If set, will override the memory limit (default 512M) for phpMyAdmin ($cfg['MemoryLimit']) and PHP memory_limit (format as [0-9+](K,M,G))"
 }
 
+variable "pma_ssl" {
+  default     = "0"
+  description = "When set to 1, enforces SSL usage for the MySQL connection."
+}
+
+variable "pma_ssl_ca_base64" {
+  default     = ""
+  description = "Set to the base64 encoded contents of the SSL CA certficiate bundle."
+}
+
 variable "upload_limit" {
   default     = "2048K"
   description = "If set, this option will override the default value for apache and php-fpm (format as [0-9+](K,M,G) default value is 2048K, this will change upload_max_filesize and post_max_size values)"
